@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  postgres:
+    container_name: micro-saas-db
+    restart: on-failure
+    image: postgres:14.4
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  redis:
+    container_name: micro-saas-redis
+    image: redis:alpine
+    restart: on-failure
+    ports:
+      - "6379:6379"
