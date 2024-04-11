@@ -1,14 +1,16 @@
 import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
+import { APP_INTERCEPTOR } from "@nestjs/core";
+
 import { SlonikModule } from "nestjs-slonik";
 import { EventEmitterModule } from "@nestjs/event-emitter";
-import { UserModule } from "@modules/user/user.module";
-import { WalletModule } from "@modules/wallet/wallet.module";
 import { RequestContextModule } from "nestjs-request-context";
-import { APP_INTERCEPTOR } from "@nestjs/core";
+
+import { postgresConnectionUri } from "@config/database.config";
 import { ContextInterceptor } from "@libs/application/context/ContextInterceptor";
 import { ExceptionInterceptor } from "@libs/application/interceptors/exception.interceptor";
-import { postgresConnectionUri } from "@config/database.config";
+import { UserModule } from "@modules/user/user.module";
+import { DataProvidersModule } from "@modules/data-providers/data-providers.module";
 
 const interceptors = [
   {
@@ -31,9 +33,8 @@ const interceptors = [
     CqrsModule,
     // Modules
     UserModule,
-    WalletModule,
+    DataProvidersModule,
   ],
-  controllers: [],
   providers: [...interceptors],
 })
 export class AppModule {}
