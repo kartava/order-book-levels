@@ -6,6 +6,7 @@
 // Root
 const usersRoot = "users";
 const walletsRoot = "wallets";
+const ordersRoot = "orders";
 
 // Api Versions
 const v1 = "v1";
@@ -19,5 +20,8 @@ export const routesV1 = {
   wallet: {
     root: walletsRoot,
     delete: `/${walletsRoot}/:id`,
+  },
+  orders: {
+    root: ordersRoot,
   },
 };
